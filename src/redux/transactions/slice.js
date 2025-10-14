@@ -1,5 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchTransactions } from "./operations";
+import {
+  fetchTransactions,
+  addTransaction,
+  deleteTransaction,
+  updateTransaction,
+} from "./operations";
 
 const initialState = {
   items: [],
@@ -26,10 +31,34 @@ const transactionsSlice = createSlice({
       .addCase(fetchTransactions.rejected, handleRejected)
       .addCase(fetchTransactions.fulfilled, (state, action) => {
         state.loading = false;
-        state.items.push(...action.payload);
+        state.items = action.payload;
+      })
+      .addCase(addTransaction.pending, handlePending)
+      .addCase(addTransaction.rejected, handleRejected)
+      .addCase(addTransaction.fulfilled, (state, action) => {
+        state.loading = false;
+        state.items.push(action.payload);
+      })
+      .addCase(deleteTransaction.pending, handlePending)
+      .addCase(deleteTransaction.rejected, handleRejected)
+      .addCase(deleteTransaction.fulfilled, (state, action) => {
+        state.loading = false;
+        state.items = state.items.filter(
+          (item) => item.id !== action.payload.id
+        );
+      })
+      .addCase(updateTransaction.pending, handlePending)
+      .addCase(updateTransaction.rejected, handleRejected)
+      .addCase(updateTransaction.fulfilled, (state, action) => {
+        state.loading = false;
+        const index = state.items.findIndex(
+          (item) => item.id === action.payload.id
+        );
+        if (index !== -1) {
+          state.items[index] = action.payload;
+        }
       });
   },
 });
 
-export const { addTransaction } = transactionsSlice.actions;
 export default transactionsSlice.reducer;
