@@ -1,17 +1,31 @@
 import { useDispatch } from "react-redux";
-import { selectTransactions } from "../../redux/transactions/selectors";
+import { deleteTransaction } from "../../redux/transactions/operations";
 import css from "./TransactionsItem.module.css";
 
 const TransactionsItem = ({ transaction }) => {
   const dispatch = useDispatch();
-
+  const handleDelete = (id) => {
+    dispatch(deleteTransaction(id));
+  };
   return (
-    <li className="transaction-item" key={transaction.id}>
-      <p>{transaction.date}</p>
-      <p>{transaction.type}</p>
-      <p>{transaction.category}</p>
+    <li className={css.transactionItem} key={transaction.id}>
+      <div className={css.transactionData}>
+        <p>{transaction.transactionDate}</p>
+        <p>{transaction.type}</p>
+        <p>{transaction.categoryId}</p>
+      </div>
       <p>{transaction.comment}</p>
-      <p>{transaction.amount}</p>
+      <div className={css.btnWrapper}>
+        <p className={css.amount}>{transaction.amount}</p>
+        <button className={css.editBtn}>🖊️</button>
+        <button
+          className={css.deleteBtn}
+          onClick={() => handleDelete(transaction.id)}
+          title="Delete transaction"
+        >
+          🗑️
+        </button>
+      </div>
     </li>
   );
 };

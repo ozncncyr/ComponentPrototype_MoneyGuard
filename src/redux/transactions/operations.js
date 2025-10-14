@@ -7,7 +7,11 @@ export const fetchTransactions = createAsyncThunk(
   "transactions/fetchAll",
   async (_, thunkAPI) => {
     try {
-      const response = await axios.get("/transactions");
+      const response = await axios.get("/transactions", {
+        headers: {
+          "Cache-Control": "no-cache",
+        },
+      });
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

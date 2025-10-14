@@ -1,0 +1,46 @@
+.transactionItem {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+.transactionData {
+  display: flex;
+  flex-direction: column;
+    gap: 5px;
+    font-size: 14px;
+    color: #333;
+}
+
+.transactionAmount {
+  font-weight: bold;
+  color: green;
+}
+
+.transactionComment {
+  font-style: italic;
+  color: #555;
+}
+
+.btnWrapper {
+  display: flex;
+  gap: 10px;
+}
+
+.editBtn, .deleteBtn {
+  padding: 5px 10px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.editBtn {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.deleteBtn {
+  background-color: #f44336;
+  color: white;
+}
