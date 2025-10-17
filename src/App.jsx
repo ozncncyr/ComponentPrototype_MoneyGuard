@@ -11,7 +11,6 @@ function App() {
   }, [dispatch]);
   return (
     <div className="App">
-      <h1>Transaction History</h1>
       <TransactionList />
     </div>
   );

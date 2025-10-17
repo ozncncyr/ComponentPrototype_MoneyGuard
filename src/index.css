@@ -12,4 +12,7 @@ html{
 }
 body{
   font-family: "Poppins", sans-serif;
+  background: rgb(65, 8, 65) linear-gradient(219.62deg, rgba(109, 84, 235, 0.6) 28.31%, rgba(101, 35, 146, 0.6) 66.76%);
+background: rgba(46, 23, 70, 1);
+  color: white;
 }
